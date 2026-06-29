@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'sudo docker build -t $IMAGE_NAME .'
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
 
@@ -23,8 +23,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
-                    echo "$DOCKER_PASS" | sudo docker login -u "$DOCKER_USER" --password-stdin
-                    sudo docker push $IMAGE_NAME
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    docker push $IMAGE_NAME
                     '''
                 }
             }
@@ -33,9 +33,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                sudo docker stop devops-app || true
-                sudo docker rm devops-app || true
-                sudo docker run -d --name devops-app -p 80:80 $IMAGE_NAME
+                docker stop devops-app || true
+                docker rm devops-app || true
+                docker run -d --name devops-app -p 80:80 $IMAGE_NAME
                 '''
             }
         }
