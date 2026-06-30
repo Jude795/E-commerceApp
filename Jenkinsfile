@@ -16,17 +16,18 @@ pipeline {
 
         stage('Set Image') {
             steps {
-                script {
-                    if (env.BRANCH_NAME == 'master') {
-                        env.IMAGE_NAME = env.PROD_IMAGE
-                    } else {
-                        env.IMAGE_NAME = env.DEV_IMAGE
-                    }
-                }
-            }
-        }
+                 script {
+                     if (env.GIT_BRANCH?.contains("master")) {
+                         env.IMAGE_NAME = env.PROD_IMAGE
+                     } else {
+                         env.IMAGE_NAME = env.DEV_IMAGE
+                     }
 
-        stage('Build Docker Image') {
+                     echo "Building image: ${env.IMAGE_NAME}"
+        }
+    }
+}        
+    stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME .'
             }
