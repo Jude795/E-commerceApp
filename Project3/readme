@@ -1,1 +1,241 @@
+# ReactJS E-Commerce Application Deployment using Docker, Jenkins and AWS
 
+## Project Overview
+
+This project demonstrates the deployment of a ReactJS E-Commerce application using Docker, Docker Compose, Jenkins CI/CD, GitHub, Docker Hub, AWS EC2, and Prometheus-Grafana Monitoring.
+
+The objective is to automate the build, deployment, and monitoring of the application using DevOps tools and best practices.
+
+---
+
+## Technologies Used
+
+- ReactJS
+- Docker
+- Docker Compose
+- Bash Scripting
+- Git & GitHub
+- Docker Hub
+- Jenkins
+- AWS EC2
+- Prometheus
+- Node Exporter
+- Grafana
+
+---
+
+## Project Workflow
+
+1. Clone the ReactJS application from GitHub.
+2. Build the application.
+3. Dockerize the application using Dockerfile.
+4. Create a Docker Compose configuration.
+5. Automate Docker build using build.sh.
+6. Automate deployment using deploy.sh.
+7. Push source code to GitHub Dev branch.
+8. Configure Jenkins for Continuous Integration and Continuous Deployment.
+9. Push Docker images to Docker Hub.
+10. Deploy the application on AWS EC2.
+11. Monitor the server and application using Prometheus and Grafana.
+
+---
+
+## Project Structure
+
+```
+.
+├── Dockerfile
+├── docker-compose.yml
+├── build.sh
+├── deploy.sh
+├── Jenkinsfile
+├── .gitignore
+├── .dockerignore
+├── build/
+├── Project3/
+└── README.md
+```
+
+---
+
+## Docker
+
+### Build Docker Image
+
+```bash
+docker build -t devops-build:v1 .
+```
+
+### Run Docker Container
+
+```bash
+docker run -d -p 80:80 devops-build:v1
+```
+
+### Docker Compose
+
+```bash
+docker compose up -d
+```
+
+---
+
+## Bash Scripts
+
+### Build Script
+
+```bash
+chmod +x build.sh
+./build.sh
+```
+
+### Deploy Script
+
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+---
+
+## Git Commands
+
+```bash
+git add .
+git commit -m "Initial Commit"
+git push -u origin dev
+```
+
+---
+
+## Docker Hub
+
+### Development Repository
+
+```
+jude795/dev
+```
+
+### Production Repository
+
+```
+jude795/prod
+```
+
+Development images are pushed to the **dev** repository, while production images are pushed to the **prod** repository after merging the Dev branch into the Master branch.
+
+---
+
+## Jenkins Pipeline
+
+The Jenkins pipeline performs the following tasks automatically:
+
+- Pull latest source code from GitHub
+- Build Docker Image
+- Push Docker Image to Docker Hub
+- Deploy Docker Container
+- Trigger builds automatically using GitHub Webhooks
+
+---
+
+## AWS Deployment
+
+The application is deployed on an AWS EC2 t2.micro instance.
+
+Configured Security Group Ports:
+
+| Port | Purpose |
+|------|---------|
+|22|SSH (My IP)|
+|80|HTTP|
+|8080|Jenkins|
+|9090|Prometheus|
+|9100|Node Exporter|
+
+---
+
+## Monitoring
+
+Monitoring is implemented using:
+
+- Prometheus
+- Node Exporter
+- Grafana
+
+The monitoring dashboard continuously tracks system performance and application health.
+
+---
+
+## Application Access
+
+Application
+
+```
+http://<EC2-PUBLIC-IP>
+```
+
+Jenkins
+
+```
+http://<EC2-PUBLIC-IP>:8080
+```
+
+Prometheus
+
+```
+http://<EC2-PUBLIC-IP>:9090
+```
+
+Node Exporter
+
+```
+http://<EC2-PUBLIC-IP>:9100
+```
+
+Grafana
+
+```
+http://<EC2-PUBLIC-IP>:3000
+```
+
+---
+
+## Features
+
+- Dockerized React Application
+- Docker Compose Deployment
+- Automated Build Script
+- Automated Deployment Script
+- GitHub Version Control
+- Docker Hub Integration
+- Jenkins CI/CD Pipeline
+- GitHub Webhook Integration
+- AWS EC2 Deployment
+- Prometheus Monitoring
+- Grafana Dashboard
+
+---
+
+## Screenshots Included
+
+- AWS EC2 Instance
+- Security Group Configuration
+- Docker Build
+- Docker Compose Deployment
+- Jenkins Installation
+- Jenkins Configuration
+- GitHub Repository
+- GitHub Webhook
+- Docker Hub Repositories
+- Application Deployment
+- Prometheus Targets
+- Node Exporter
+- Grafana Dashboard
+
+---
+
+## Author
+
+**Jude Savio**
+
+AWS | DevOps | Docker | Jenkins | GitHub | Monitoring
